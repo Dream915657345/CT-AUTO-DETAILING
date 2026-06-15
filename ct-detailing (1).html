@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CT Detailing | Auto Detailing</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #070509; color: #f5f5f5; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    header { background: #050505; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 10; }
+    .nav { max-width: 1100px; margin: auto; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
+    .logo span { color: #8b5cf6; }
+    nav a { margin-left: 22px; font-weight: 700; font-size: 14px; }
+    nav a:hover { color: #8b5cf6; }
+    .hero { min-height: 78vh; display: flex; align-items: center; background: linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)), url('https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=1600&q=80') center/cover; }
+    .hero-content { max-width: 1100px; margin: auto; padding: 70px 20px; }
+    .hero h1 { font-size: clamp(42px, 7vw, 78px); line-height: 1.05; max-width: 800px; }
+    .hero p { margin-top: 20px; font-size: 20px; max-width: 620px; color: #ddd; }
+    .btn-row { margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 14px 24px; border-radius: 4px; font-weight: 800; text-transform: uppercase; }
+    .purple { background: #8b5cf6; color: #090909; }
+    .outline { border: 2px solid #8b5cf6; color: #8b5cf6; }
+    .callbar { background: #8b5cf6; color: #080808; text-align: center; font-weight: 900; padding: 14px; letter-spacing: .5px; }
+    section { padding: 70px 20px; }
+    .wrap { max-width: 1100px; margin: auto; }
+    .section-title { text-align: center; margin-bottom: 38px; }
+    .section-title h2 { font-size: 36px; text-transform: uppercase; }
+    .section-title p { color: #bbb; margin-top: 8px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+    .card { background: #151515; border: 1px solid #292929; padding: 28px; border-radius: 10px; }
+    .card h3 { color: #8b5cf6; font-size: 23px; margin-bottom: 10px; }
+    .price { font-size: 28px; font-weight: 900; margin: 15px 0; }
+    .card ul { padding-left: 18px; color: #ddd; }
+    .card li { margin-bottom: 8px; }
+    .about { background: #111; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; }
+    .split img { width: 100%; border-radius: 12px; border: 1px solid #333; }
+    .split h2 { font-size: 36px; margin-bottom: 15px; }
+    .split p { color: #ddd; margin-bottom: 14px; }
+    .testimonials { background: #0b0b0b; }
+    .quote { font-style: italic; color: #ddd; }
+    .contact { background: #111; }
+    form { display: grid; gap: 14px; max-width: 700px; margin: auto; }
+    input, textarea, select { padding: 14px; border-radius: 6px; border: 1px solid #333; background: #070509; color: white; font-size: 16px; }
+    textarea { min-height: 130px; resize: vertical; }
+    footer { background: #050505; text-align: center; padding: 28px 20px; color: #aaa; border-top: 1px solid #222; }
+    .socials { margin-top: 10px; }
+    .socials a { margin: 0 8px; color: #8b5cf6; font-weight: 700; }
+
+    .eyebrow { color: #a78bfa; font-weight: 900; letter-spacing: 2px; font-size: 13px; text-transform: uppercase; }
+    .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .package-card { background: linear-gradient(180deg, #171020, #101010); border: 1px solid #312047; border-radius: 16px; padding: 26px; box-shadow: 0 12px 30px rgba(0,0,0,.28); display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; }
+    .package-card.featured { border-color: #8b5cf6; box-shadow: 0 0 30px rgba(139,92,246,.18); }
+    .package-top span { display: inline-block; background: rgba(139,92,246,.16); color: #c4b5fd; border: 1px solid rgba(139,92,246,.35); padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 900; text-transform: uppercase; }
+    .package-top h3 { color: #ffffff; font-size: 25px; margin: 16px 0 8px; }
+    .package-top p { color: #cfcfcf; margin-bottom: 18px; }
+    .price-list { border-top: 1px solid #2f2540; padding-top: 15px; }
+    .price-list p { color: #e8e2ff; margin: 9px 0; }
+    .upgrade-panel { margin-top: 28px; background: #120d18; border: 1px solid #3b2460; border-radius: 16px; padding: 28px; display: grid; grid-template-columns: 1.4fr .8fr; gap: 22px; align-items: center; }
+    .upgrade-panel h3 { font-size: 28px; margin: 8px 0; }
+    .upgrade-panel p { color: #ddd; }
+    .note-box { background: #080808; border: 1px solid #8b5cf6; border-radius: 12px; padding: 18px; }
+
+    .package-card { cursor: pointer; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    .package-card:hover { transform: translateY(-5px); border-color: #8b5cf6; box-shadow: 0 0 28px rgba(139,92,246,.22); }
+    .read-more { margin-top: 18px; display: inline-block; color: #c4b5fd; font-weight: 900; text-transform: uppercase; font-size: 13px; letter-spacing: .6px; }
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.82); z-index: 100; padding: 22px; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { width: min(760px, 100%); max-height: 88vh; overflow-y: auto; background: linear-gradient(180deg, #171020, #0c0c0c); border: 1px solid #8b5cf6; border-radius: 18px; padding: 30px; box-shadow: 0 0 45px rgba(139,92,246,.25); position: relative; }
+    .modal-content h3 { color: #c4b5fd; font-size: 30px; margin-bottom: 8px; }
+    .modal-content p { color: #ddd; margin: 10px 0; }
+    .modal-content ul { padding-left: 20px; color: #eee; margin: 14px 0; }
+    .modal-content li { margin-bottom: 8px; }
+    .close-modal { position: absolute; top: 14px; right: 18px; background: transparent; border: 0; color: white; font-size: 34px; cursor: pointer; }
+    .modal-price { background: #080808; border: 1px solid #312047; border-radius: 12px; padding: 16px; margin-top: 16px; }
+
+    @media (max-width: 720px) { .upgrade-panel { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) {
+      .nav { flex-direction: column; gap: 12px; }
+      nav a { margin: 0 8px; }
+      .split { grid-template-columns: 1fr; }
+      .hero { min-height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">CT <span>Detailing</span></div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Packages</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="hero-content">
+      <h1>Premium Detailing That Brings Your Vehicle Back To Life</h1>
+      <p>Professional shop-based interior, exterior, paint correction, ceramic coating, and trim restoration services built around clean results and long-lasting protection.</p>
+      <div class="btn-row">
+        <a class="btn purple" href="#contact">Get a Free Quote</a>
+        <a class="btn outline" href="#services">View Packages</a>
+      </div>
+    </div>
+  </main>
+
+  <div class="callbar">GET A FREE QUOTE TODAY — CALL OR TEXT: (310) 871-5320</div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-title">
+        <p class="eyebrow">CT DETAILING PACKAGES</p>
+        <h2>Detailing Packages</h2>
+        <p>Shop/drop-off service only. Pricing starts at the listed rate and may change based on size, condition, and add-ons.</p>
+      </div>
+
+      <div class="package-grid">
+        <div class="package-card" onclick="openPackage('monthly')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Maintenance</span>
+            <h3>Monthly Maintenance</h3>
+            <p>Keep your car looking fresh with a regular monthly upkeep package.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $140+</p>
+            <p><strong>Sedan / Mid Size:</strong> $150+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $160+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card featured" onclick="openPackage('exterior')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Exterior</span>
+            <h3>Exterior Focused Detail</h3>
+            <p>Deep exterior wash, wheels, tires, paint decon, and clean finish.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $200+</p>
+            <p><strong>Sedan / Mid Size:</strong> $239+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $279+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card" onclick="openPackage('interior')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Interior</span>
+            <h3>Interior Focused Detail</h3>
+            <p>Vacuum, wipe down, plastics, cup holders, cracks, crevices, and interior refresh.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $200+</p>
+            <p><strong>Sedan / Mid Size:</strong> $239+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $279+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card" onclick="openPackage('reset')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Interior Reset</span>
+            <h3>Full Interior Reset</h3>
+            <p>More in-depth interior cleaning for vehicles that need extra attention.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $275+</p>
+            <p><strong>Sedan / Mid Size:</strong> $320+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $359+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card featured" onclick="openPackage('fulldetail')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Popular</span>
+            <h3>Full Detail</h3>
+            <p>Interior and exterior detail for a complete clean inside and out.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $320+</p>
+            <p><strong>Sedan / Mid Size:</strong> $365+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $399+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card" onclick="openPackage('enhancement')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Polishing</span>
+            <h3>Paint Enhancement</h3>
+            <p>Light polish to improve gloss and refresh the look of your paint.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $415+</p>
+            <p><strong>Sedan / Mid Size:</strong> $459+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $495+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card" onclick="openPackage('correction')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Correction</span>
+            <h3>2-Step Paint Correction</h3>
+            <p>Cut and polish process to remove heavier swirls and bring back clarity.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $549+</p>
+            <p><strong>Sedan / Mid Size:</strong> $595+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $629+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card featured" onclick="openPackage('coating')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Protection</span>
+            <h3>Ceramic Coating</h3>
+            <p>Paint prep and ceramic coating for gloss, slickness, and longer lasting protection.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $779+</p>
+            <p><strong>Sedan / Mid Size:</strong> $869+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $945+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+
+        <div class="package-card" onclick="openPackage('coverage')" tabindex="0" role="button">
+          <div class="package-top">
+            <span>Top Package</span>
+            <h3>Full Coverage</h3>
+            <p>Full premium package for vehicles needing correction, coating, and full protection.</p>
+          </div>
+          <div class="price-list">
+            <p><strong>Coupes / Single Cab:</strong> $1,195+</p>
+            <p><strong>Sedan / Mid Size:</strong> $1,285+</p>
+            <p><strong>Full Size SUV / Truck:</strong> $1,349+</p>
+          </div>
+          <span class="read-more">Click to read more →</span>
+        </div>
+      </div>
+
+      <div class="upgrade-panel">
+        <div>
+          <p class="eyebrow">ADD-ONS</p>
+          <h3>Available Upgrades</h3>
+          <p>Engine bay detail, pet hair removal, headlight restoration, odor removal, wheel coating, trim coating, glass coating, leather coating, fabric coating, tree sap removal, water spot removal, and trim restoration.</p>
+        </div>
+        <div class="note-box">
+          <strong>Booking Notes</strong>
+          <p>By appointment only. Non-refundable deposit required. Hazardous material is a $200 upcharge. Drop-off/shop service only — not mobile yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap split">
+      <div>
+        <h2>About CT Detailing</h2>
+        <p>CT Detailing is focused on making vehicles look clean, glossy, and protected. Every service is done with attention to detail, quality products, and care for your vehicle.</p>
+        <p>Whether you need a quick maintenance wash or a full correction and ceramic coating, CT Detailing gives your car the refreshed look it deserves.</p>
+        <a class="btn purple" href="#contact">Book Now</a>
+      </div>
+      <img src="https://images.unsplash.com/photo-1605164599901-75aa3afcc2ad?auto=format&fit=crop&w=1200&q=80" alt="Car detailing foam wash" />
+    </div>
+  </section>
+
+  <section id="reviews" class="testimonials">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+        <p>Sample reviews — replace these with real customer reviews.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><p class="quote">“My car looked brand new again. The paint had way more gloss than before.”</p><br><strong>— Customer Review</strong></div>
+        <div class="card"><p class="quote">“Great communication, clean work, and the interior came out amazing.”</p><br><strong>— Customer Review</strong></div>
+        <div class="card"><p class="quote">“The trim restoration made a huge difference. It gave the car a much cleaner look.”</p><br><strong>— Customer Review</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Fill this out or text to get a quote.</p>
+      </div>
+      <form action="mailto:cadontway8@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <input type="email" name="email" placeholder="Email Address" />
+        <select name="service">
+          <option>Choose a Service</option>
+          <option>Monthly Maintenance</option>
+          <option>Exterior Focused Detail</option>
+          <option>Interior Focused Detail</option>
+          <option>Full Interior Reset</option>
+          <option>Full Detail</option>
+          <option>Paint Enhancement</option>
+          <option>2-Step Paint Correction</option>
+          <option>Ceramic Coating</option>
+          <option>Full Coverage</option>
+          <option>Trim Restoration</option>
+        </select>
+        <textarea name="message" placeholder="Tell us about your vehicle and what it needs"></textarea>
+        <button class="btn purple" type="submit">Send Quote Request</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <strong>CT Detailing</strong><br />
+    Professional Auto Detailing • Shop/Drop-Off Service • Los Angeles, CA<br />
+    📞 (310) 871-5320 &nbsp;|&nbsp; ✉️ cadontway8@gmail.com<br />
+    <div class="socials">
+      <a href="https://www.instagram.com/ctd_etailing/" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+  <div id="packageModal" class="modal" onclick="closePackage(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="close-modal" onclick="hidePackage()">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const packageDetails = {
+      monthly: { title: 'Monthly Maintenance', desc: 'Keep your vehicle looking clean and protected year-round with a simple monthly upkeep service.', includes: ['Basic wipe down of the interior', 'Hand wash exterior', '2-week paint sealant applied'], prices: ['Coupes / Single Cab: $140+', 'Sedan / Mid Size: $150+', 'Full Size SUV / Truck: $160+'] },
+      exterior: { title: 'Exterior Focused Detail', desc: 'A strong exterior cleaning package for vehicles that need the outside brought back to a clean, glossy look.', includes: ['Foam wash and hand wash', 'Wheels, tires, and fender wells cleaned', 'Paint decontamination', 'Door jamb wipe down', 'Tire dressing', 'Exterior glass cleaned', 'Clean final finish'], prices: ['Coupes / Single Cab: $200+', 'Sedan / Mid Size: $239+', 'Full Size SUV / Truck: $279+'] },
+      interior: { title: 'Interior Focused Detail', desc: 'A solid interior refresh for vehicles that need the cabin cleaned up and looking presentable again.', includes: ['Full vacuum', 'Cracks and crevices cleaned', 'Plastics and panels wiped down', 'Cup holders cleaned', 'Interior glass cleaned', 'Seats and carpets cleaned as needed', 'Light interior protection'], prices: ['Coupes / Single Cab: $200+', 'Sedan / Mid Size: $239+', 'Full Size SUV / Truck: $279+'] },
+      reset: { title: 'Full Interior Reset', desc: 'A deeper interior service for vehicles with heavier dirt, stains, dust, or buildup.', includes: ['Detailed vacuum', 'Deep wipe down of panels and plastics', 'Steam cleaning where needed', 'Carpet and seat cleaning', 'Cup holders, vents, and tight areas cleaned', 'Interior glass cleaned', 'Interior dressing/protection'], prices: ['Coupes / Single Cab: $275+', 'Sedan / Mid Size: $320+', 'Full Size SUV / Truck: $359+'] },
+      fulldetail: { title: 'Full Detail', desc: 'A complete inside and outside detail for a full vehicle refresh.', includes: ['Exterior hand wash', 'Wheels and tires cleaned', 'Paint decon', 'Interior vacuum and wipe down', 'Interior glass cleaned', 'Door jambs cleaned', 'Tire dressing', 'Clean finish inside and out'], prices: ['Coupes / Single Cab: $320+', 'Sedan / Mid Size: $365+', 'Full Size SUV / Truck: $399+'] },
+      enhancement: { title: 'Paint Enhancement', desc: 'A gloss-focused polish that improves shine and removes light haze or minor defects.', includes: ['Exterior wash', 'Chemical and clay decontamination', 'One-step polish / enhancement', 'Gloss improvement', 'Light swirl reduction', 'Paint sealant or protection applied'], prices: ['Coupes / Single Cab: $415+', 'Sedan / Mid Size: $459+', 'Full Size SUV / Truck: $495+'] },
+      correction: { title: '2-Step Paint Correction', desc: 'A more serious correction process made to remove heavier swirls and improve paint clarity.', includes: ['Full wash and decon', 'Cutting step to reduce defects', 'Polishing step to refine gloss', 'Paint inspection', 'Major gloss and clarity improvement', 'Protection applied after correction'], prices: ['Coupes / Single Cab: $549+', 'Sedan / Mid Size: $595+', 'Full Size SUV / Truck: $629+'] },
+      coating: { title: 'Ceramic Coating', desc: 'A premium protection package that adds slickness, shine, and longer-lasting paint protection.', includes: ['Wash and paint decontamination', 'Paint prep before coating', 'Light polish as needed', 'Ceramic coating applied to paint', 'Hydrophobic protection', 'Added gloss and easier maintenance'], prices: ['Coupes / Single Cab: $779+', 'Sedan / Mid Size: $869+', 'Full Size SUV / Truck: $945+'] },
+      coverage: { title: 'Full Coverage', desc: 'The top package for vehicles needing full correction, coating, and premium protection.', includes: ['Full exterior detail', 'Full interior detail', 'Paint correction', 'Ceramic coating', 'Trim and glass protection options', 'Wheels and tires cleaned', 'Premium final inspection'], prices: ['Coupes / Single Cab: $1,195+', 'Sedan / Mid Size: $1,285+', 'Full Size SUV / Truck: $1,349+'] }
+    };
+
+    function openPackage(key) {
+      const item = packageDetails[key];
+      if (!item) return;
+      document.getElementById('modalBody').innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <h4>What is included:</h4>
+        <ul>${item.includes.map(i => `<li>${i}</li>`).join('')}</ul>
+        <div class="modal-price">
+          <strong>Starting Prices</strong>
+          ${item.prices.map(p => `<p>${p}</p>`).join('')}
+        </div>
+        <p><strong>Note:</strong> Final price depends on vehicle size, condition, and add-ons. Drop-off/shop service only.</p>
+        <a class="btn purple" href="#contact" onclick="hidePackage()">Request This Package</a>
+      `;
+      document.getElementById('packageModal').classList.add('active');
+    }
+
+    function hidePackage() {
+      document.getElementById('packageModal').classList.remove('active');
+    }
+
+    function closePackage(event) {
+      if (event.target.id === 'packageModal') hidePackage();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') hidePackage();
+      if ((e.key === 'Enter' || e.key === ' ') && document.activeElement.classList.contains('package-card')) {
+        document.activeElement.click();
+      }
+    });
+  </script>
+
+</body>
+</html>
